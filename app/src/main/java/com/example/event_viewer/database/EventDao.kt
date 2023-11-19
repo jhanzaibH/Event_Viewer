@@ -10,7 +10,7 @@ interface EventDao {
     fun insertEvent(event: Event)
 
     @Query("SELECT * FROM Event")
-    fun getAllEvents(): List<Event>
+    suspend fun getAllEvents(): List<Event>
 
     // ... other queries as needed
 }

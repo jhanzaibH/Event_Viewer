@@ -10,4 +10,18 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+
+
+    <string name="ageRange_prompt">Choose a Majlis</string>
+    <string name="location_prompt">Choose a Mosque</string>
+    <string name="title_hint">Title</string>
+    <string name="start_date_button_text">Choose Start Time</string>
+    <string name="end_date_button_text">Choose End Time</string>
+    <string name="lunch_served">Lunch Served</string>
+    <string name="description_hint">Description</string>
+    <string name="start_time">No time chosen</string>
+    <string name="end_time">No time chosen</string>
+    <string name="add_event">Add Event</string>
+
 </resources>
