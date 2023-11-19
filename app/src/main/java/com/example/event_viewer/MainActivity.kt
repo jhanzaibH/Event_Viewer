@@ -31,6 +31,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // to remove database periodically
+        //this.deleteDatabase("event_database")
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -53,6 +56,8 @@ class MainActivity : AppCompatActivity() {
         database = DatabaseBuilder.getDatabase(applicationContext)
 
         eventDao = database.eventDao()
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
