@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_events">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/nav_events"
         android:name="com.example.event_viewer.ui.home.HomeFragment"
-        android:label="@string/menu_home"
+        android:label="@string/menu_events"
         tools:layout="@layout/fragment_home" />
 
     <fragment
@@ -18,8 +18,8 @@
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_news"
         android:name="com.example.event_viewer.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:label="@string/menu_news"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>

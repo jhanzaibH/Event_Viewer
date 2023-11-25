@@ -2,9 +2,7 @@ package com.example.event_viewer
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -16,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.event_viewer.databinding.ActivityMainBinding
 
 import com.example.event_viewer.database.*
-import java.util.Date
 
 import kotlinx.coroutines.*
 
@@ -49,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow), drawerLayout)
+                R.id.nav_events, R.id.nav_gallery, R.id.nav_news), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
