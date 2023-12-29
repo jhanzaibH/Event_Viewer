@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -21,7 +22,7 @@ class AddEventActivity : AppCompatActivity() {
     private lateinit var eventLocationSpinner: Spinner
     private lateinit var eventStartDateTextView: TextView
     private lateinit var eventEndDateTextView: TextView
-    private lateinit var eventAgeRangeSpinner: Spinner
+    private lateinit var ageRangeContainer: LinearLayout
 
     private lateinit var eventDao: EventDao
 
@@ -29,11 +30,13 @@ class AddEventActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_new_event)
 
+        findInputViews()
+
         val locations = arrayOf("Göteborg", "Malmö", "Kamlar", "Luleå", "Stockholm")
         setupLocationSpinner(locations)
 
         val ageRanges = arrayOf("Khuddam", "Aftal", "Lajna", "Ansar")
-        setupAgeRangeSpinner(ageRanges)
+        addAgeRangeCheckboxes(ageRanges)
 
         val startDateButton = findViewById<Button>(R.id.btn_start_date)
         val endDateButton = findViewById<Button>(R.id.btn_end_date)
@@ -46,12 +49,20 @@ class AddEventActivity : AppCompatActivity() {
 
         // Find the button by its ID
         val addButton = findViewById<Button>(R.id.btn_add_event)
-        findInputViews()
         initEventDao()
         // Set an OnClickListener
         addButton.setOnClickListener {
             // Define what happens when the button is clicked
             addEvent()
+        }
+    }
+
+    private fun addAgeRangeCheckboxes(ageRanges: Array<String>) {
+        ageRanges.forEach { ageRange ->
+            val checkBox = CheckBox(this)
+            checkBox.text = ageRange
+            checkBox.id = View.generateViewId()
+            ageRangeContainer.addView(checkBox)
         }
     }
 
@@ -90,13 +101,13 @@ class AddEventActivity : AppCompatActivity() {
         locationSpinner.adapter = locationAdapter
     }
 
-    private fun setupAgeRangeSpinner(ageRanges:Array<String>){
+    /* fun setupAgeRangeSpinner(ageRanges:Array<String>){
         val ageRangeSpinner = findViewById<Spinner>(R.id.ageRangespinner)
 
         val ageRangeAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, ageRanges)
         ageRangeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         ageRangeSpinner.adapter = ageRangeAdapter
-    }
+    }*/
 
     private fun showDatePicker(onDateSet: (year: Int, month: Int, day: Int) -> Unit) {
         val calendar = Calendar.getInstance()
@@ -118,7 +129,8 @@ class AddEventActivity : AppCompatActivity() {
         eventLocationSpinner = findViewById(R.id.location_spinner)
         eventStartDateTextView= findViewById(R.id.start_date)
         eventEndDateTextView= findViewById(R.id.end_date)
-        eventAgeRangeSpinner= findViewById(R.id.ageRangespinner)
+        ageRangeContainer = findViewById(R.id.ageRangeContainer)
+//        eventAgeRangeSpinner= findViewById(R.id.ageRangespinner)
     }
 
     private fun addEvent(){
@@ -127,10 +139,21 @@ class AddEventActivity : AppCompatActivity() {
         val location = eventLocationSpinner.selectedItem.toString()
         val startDate = eventStartDateTextView.text.toString()
         val endDate = eventEndDateTextView.text.toString()
-        val ageRange = eventAgeRangeSpinner.selectedItem.toString()
+        //val ageRange = eventAgeRangeSpinner.selectedItem.toString()
+
+
+        val selectedAgeRanges = mutableListOf<String>()
+        for (i in 0 until ageRangeContainer.childCount) {
+            val checkBox = ageRangeContainer.getChildAt(i) as CheckBox
+            if (checkBox.isChecked) {
+                selectedAgeRanges.add(checkBox.text.toString())
+            }
+        }
+
+        val ageRangeString = selectedAgeRanges.joinToString(", ")
 
         val newEvent = Event(title = title, description = description, location = location,
-            startDateTime = startDate, endDateTime = endDate, ageRange = ageRange)
+            startDateTime = startDate, endDateTime = endDate, ageRange = ageRangeString)
 
         CoroutineScope(Dispatchers.IO).launch {
             eventDao.insertEvent(newEvent)

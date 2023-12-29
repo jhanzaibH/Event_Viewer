@@ -5,13 +5,25 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Spinner for Majlis names -->
-    <Spinner
-        android:id="@+id/ageRangespinner"
+
+    <!-- Title for the Age Range Section -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/select_age_range_s"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Layout for Majlis names -->
+    <LinearLayout
+        android:id="@+id/ageRangeContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:prompt="@string/ageRange_prompt" />
+        android:orientation="vertical"
+        android:padding="16dp">
+        <!-- Checkboxes will be added here programmatically -->
+    </LinearLayout>
 
     <!-- Spinner for Mosque names -->
     <Spinner

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Event_Viewer</string>
+    <string name="app_name">Jamaat Sweden</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Islams Ahmadiyya Församling</string>
@@ -23,5 +23,6 @@
     <string name="start_time">No time chosen</string>
     <string name="end_time">No time chosen</string>
     <string name="add_event">Add Event</string>
+    <string name="select_age_range_s">Select Majlis</string>
 
 </resources>
